@@ -1,6 +1,7 @@
 #       Imports         #
 #Tkinter is our GUI manager
 import tkinter as tk
+import pygame
 from tkinter import *
 from tkinter import colorchooser, filedialog, OptionMenu, messagebox
 from tkinter import DOTBOX, StringVar, simpledialog
@@ -17,10 +18,12 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
 
+
 #    Window Settings    #
 app=App()
 app.geometry("960x540")
 app.title("WAYD Paint")
+
 
 ###         DEFINE VARIABLES        ###
 prevPoint=[0, 0]
@@ -42,8 +45,6 @@ def pencil() :
     brushColor="black"
     canvas["cursor"]="pencil"
     curcolor = Canvas(curcolorf, height=32, width=32, bg=brushColor)
-    pass
-def fill():
     pass
 def eraser():
     global brushColor,curcolor
@@ -118,14 +119,14 @@ def paint(event):
 
 
 ###Tools Frame
-topframe = Frame(app,height=128,width=960)
+topframe = Frame(app,height=160,width=960)
 topframe.grid(row=0,column=0)
 
 
 ##holder
-holder = Frame(topframe,height=128,width=928,bg="white",padx=8,pady=10)
+holder = Frame(topframe,height=160,width=928,bg="white",padx=8,pady=0)
 holder.grid(row=0,column=0,sticky=NW)
-holder.place(relx=0.5,rely=0.5, anchor=CENTER)
+holder.place(relx=0.5,rely=0.55, anchor=CENTER)
 #set up the columns for holder
 columnsize = 72
 columns = 5
@@ -147,15 +148,12 @@ toollabel.grid(row=0,column=1)
 #pencil
 pencilButton = Button(holder,text="Pencil",height=1,width=12,command=pencil)
 pencilButton.grid(row=1,column=1)
-##paint bucket
-paintBucket = Button(holder,text="Paint Bucket",height=1,width=12,command=fill)
-paintBucket.grid(row=2,column=1)
 #eraser
 easerButton = Button(holder,text="Eraser",height=1,width=12,command=eraser)
-easerButton.grid(row=3,column=1)
+easerButton.grid(row=2,column=1)
 #color change
 colorButton = Button(holder,text="Color Change",height=1,width=12,command=colorChange)
-colorButton.grid(row=4,column=1)
+colorButton.grid(row=3,column=1)
 
 ##set brush menu
 brushlabel = Label(holder,text="Brush Size",borderwidth=2,relief=SOLID,width=16)
